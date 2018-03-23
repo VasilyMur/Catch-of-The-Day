@@ -641,6 +641,7 @@ input[type=submit].twitter:after {
   margin: 50px auto;
   padding: 2rem;
   border: 2px solid #000;
+  display: block;
 }
 .store-selector input,
 .store-selector button {
