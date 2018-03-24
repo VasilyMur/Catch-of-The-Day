@@ -20,7 +20,9 @@ class StorePicker extends React.Component {
     // Set Property rather than declare Method!!! not to use bind in constructor!!!
     goToStore = (e) => {
         e.preventDefault();
-        console.log(this.myInput.current.defaultValue) 
+        const storeName = this.myInput.current.value;
+        //Change Page (URL) without reload!
+        this.props.history.push(`/store/${storeName}`);
     }
 
     render() {
