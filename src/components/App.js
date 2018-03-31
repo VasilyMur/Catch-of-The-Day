@@ -59,6 +59,15 @@ class App extends React.Component {
         this.setState({ fishes: fishes });
     }
 
+    deleteFish = (key) => {
+        // 1. Take a of the current state
+        const fishes = {...this.state.fishes};
+        // 2. Update that state -->> delete fishes[key] - doesnt work for Firebase. Firebase wants to set it to NULL instead!!
+        fishes[key] = null;
+        // 3. Set that to state
+        this.setState({ fishes: fishes });
+    }
+
     loadSampleFishes = () => {
         this.setState({
             fishes: sampleFishes
@@ -77,6 +86,12 @@ class App extends React.Component {
         this.setState({ 
             order: order
         })
+    }
+
+    removeFromOrder = (key) => {
+        const order = {...this.state.order};
+        delete order[key];
+        this.setState({ order: order });
     }
     
     render() {
@@ -98,11 +113,16 @@ class App extends React.Component {
                     </ul>
                   
                 </div>
-                <Order fishes={this.state.fishes} order={this.state.order}/>
+                <Order 
+                    fishes={this.state.fishes} 
+                    order={this.state.order}
+                    removeFromOrder={this.removeFromOrder}
+                    />
                 <Inventory 
                     loadSampleFishes={this.loadSampleFishes}
                     addFish={this.addFish}
                     updateFish={this.updateFish}
+                    deleteFish={this.deleteFish}
                     fishes={this.state.fishes}
                     />
             </div>
